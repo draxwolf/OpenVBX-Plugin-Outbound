@@ -26,8 +26,26 @@
 		<p>Use %sender% to substitute the sender's number, %number% for the number texted or %body% for the message body.</p>
 <?php endif; ?>
 		<fieldset class="vbx-input-container">
-			<textarea name="sms" class="medium"><?php echo AppletInstance::getValue('sms'); ?></textarea>
+			<textarea name="sms" class="medium" onkeyup="CountLeft(this.form.sms,this.form.rem_sms,160);"><?php echo AppletInstance::getValue('sms'); ?></textarea>
 		</fieldset>
+                Characters Remaining
+                <fieldset class="vbx-input-container">
+                <input readonly type="text" name="rem_sms" class="tiny" size="3" maxlength="3" value="160" />
+                 <script language="JavaScript">
+                  function CountLeft(field, count, max) {
+                   if (field.value.length > max)
+                    {
+                     count.value = max - field.value.length;
+                     $(count).css({backgroundColor: "white",color: "red",fontWeight: "normal"});
+                    }
+                   else
+                    {
+                     count.value = max - field.value.length;
+                     $(count).css({backgroundColor: "white",color: "black",fontWeight: "normal"});
+                    }
+                   }
+                 </script>
+                </fieldset>
 	</div>
 	<h2>Next</h2>
 	<p>After sending the message, continue to the next applet</p>
